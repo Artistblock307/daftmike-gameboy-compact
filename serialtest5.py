@@ -26,7 +26,7 @@ def main():
     print("CART READ BEGIN")
     
     #rompath = "/home/pi/RetroPie/roms/" + console + "/" + rom
-    #consolePath = "/home/john/Desktop/roms/" + console + "/"
+    #consolePath = "/home/pi/RetroPie/roms/" + console + "/"
 
     romPath = "/home/john/Desktop/roms/" + console + "/" + rom
     consolePath = "/home/john/Desktop/roms/" + console + "/"
