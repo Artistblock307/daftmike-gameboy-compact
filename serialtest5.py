@@ -5,15 +5,8 @@ import subprocess
 
 def main():
     
-    ser = serial.Serial("/dev/ttyACM0", 9600, timeout=5)
-    time.sleep(.2)
-
-    x = ser.readline()
-    y = str(x)
-    print("Read input", y.decode("utf-8") ,"from Arduino")
-    
-    console = input("Enter console name: ")
-    rom = input("Enter rom name: ")   
+    console = decodeInput()
+    rom = decodeInput()
 
     procnames = ["retroarch", "ags", "uae4all2", "uae4arm", "capricerpi", "linapple", "hatari", "stella",
                  "atari800", "xroar", "vice", "daphne", "reicast", "pifba", "osmose", "gpsp", "jzintv",
@@ -33,7 +26,25 @@ def main():
 
     consoleOk = checkConsole(consolePath, console)
     romOk = checkRom(romPath, rom)
-    
+
+def decodeInput():
+    ser = serial.Serial("/dev/ttyACM0", 9600, timeout=5)
+
+    while True:
+    try:
+        line = ser.readline()
+        if line != "":
+            records = line[:-1].split(', ')
+
+            console = records[0]
+            rom = records[1]
+
+    except IndexError:
+        print "NDEF read error...\n"
+        ser.write("bad")
+
+    return(console, rom) 
+
 def checkConsole(consolePath, console):
     if os.path.isdir(consolePath):
         consoleOk = True
