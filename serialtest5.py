@@ -18,11 +18,11 @@ def main():
     
     print("CART READ BEGIN")
     
-    #rompath = "/home/pi/RetroPie/roms/" + console + "/" + rom
-    #consolePath = "/home/pi/RetroPie/roms/" + console + "/"
+    rompath = "/home/pi/RetroPie/roms/" + console + "/" + rom
+    consolePath = "/home/pi/RetroPie/roms/" + console + "/"
 
-    romPath = "/home/john/Desktop/roms/" + console + "/" + rom
-    consolePath = "/home/john/Desktop/roms/" + console + "/"
+    #romPath = "/home/john/Desktop/roms/" + console + "/" + rom
+    #consolePath = "/home/john/Desktop/roms/" + console + "/"
 
     consoleOk = checkConsole(consolePath, console)
     romOk = checkRom(romPath, rom)
