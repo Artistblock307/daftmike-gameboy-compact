@@ -1,6 +1,7 @@
 import os
 import time
 import subprocess
+from fuzzywuzzy import process
 
 def main():
 
@@ -17,9 +18,11 @@ def main():
     romOk = checkRom(romPath, rom)
 
     emulators = {"nes":"nestopia", "snes":"snes9x", "n64":"mupen64plus", "gb":"gambatte", "gbc":"gambatte", "gba":"mgba", "ps1":"mednafen_psx", "psp":"ppsspp"}
+    romsearch = os.listdir(consolePath)
 
     if consoleOk and romOk == True:
-        os.system("retroarch -L /usr/lib/libretro/" + emulators[console] + "_libretro.so " + consolePath + "\'" + rom + "\'")
+        os.system("retroarch -L /usr/lib/libretro/" + emulators[console] + "_libretro.so " + consolePath + "\'" + rom + ".zip\'")
+        print(process.extract(rom, romsearch, limit=3))
 
 def checkConsole(consolePath, console):
     if os.path.isdir(consolePath):
